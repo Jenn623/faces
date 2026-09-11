@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>AI MOOD — Reconocimiento de expresiones</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="stage">
+
+    <!-- PANTALLA 1: INICIO -->
+    <section id="screen-start" class="screen active">
+      <div class="brand">
+        <span class="brand-mark">◍</span>
+        <h1>AI MOOD</h1>
+      </div>
+      <p class="subtitle">Reconocimiento de expresiones faciales mediante IA</p>
+
+      <div class="preview-emoji" aria-hidden="true">😄</div>
+
+      <button id="startBtn" class="btn-primary">Comenzar</button>
+
+      <p class="privacy-note">🔒 Las imágenes no se almacenan. El análisis se realiza localmente en el dispositivo.</p>
+    </section>
+
+    <!-- PANTALLA 2: CARGANDO / CÁMARA -->
+    <section id="screen-loading" class="screen">
+      <p class="status-label" id="loadingLabel">Cargando modelos de IA…</p>
+      <div class="scan-bar"><div class="scan-fill" id="loadingFill"></div></div>
+    </section>
+
+    <!-- PANTALLA 3: ANALIZANDO / EN VIVO -->
+    <section id="screen-live" class="screen">
+
+      <div class="live-layout">
+
+        <div class="camera-wrap">
+          <video id="video" autoplay muted playsinline></video>
+          <canvas id="overlay"></canvas>
+          <div class="camera-frame"></div>
+          <div class="scan-hud" id="scanHud">
+            <span id="scanHudText">DETECTANDO ROSTRO</span>
+          </div>
+        </div>
+
+        <div class="result-wrap">
+          <p class="eyebrowless-label">Analizando expresión</p>
+
+          <div class="result-emoji" id="resultEmoji">🙂</div>
+          <h2 class="result-title" id="resultTitle">—</h2>
+
+          <div class="confidence-row">
+            <div class="confidence-track">
+              <div class="confidence-fill" id="confidenceFill"></div>
+            </div>
+            <span class="confidence-pct" id="confidencePct">0%</span>
+          </div>
+
+          <p class="sentiment-line" id="sentimentLine">Esperando rostro…</p>
+
+          <div class="bars" id="bars"></div>
+        </div>
+
+      </div>
+
+      <!-- MODO CHALLENGE -->
+      <div class="challenge" id="challenge">
+        <p class="challenge-title">🎭 Cambia tu expresión</p>
+        <p class="challenge-copy" id="challengeCopy">La IA detectó <strong>neutral</strong>. ¿Puedes hacerla llegar a felicidad?</p>
+      </div>
+
+      <!-- MODO EMPRESARIAL -->
+      <div class="insight-card">
+        <p class="insight-title">📊 AI Customer Insight</p>
+        <div class="insight-row">
+          <span>Expresión detectada</span>
+          <span id="insightEmotion">—</span>
+        </div>
+        <div class="insight-row">
+          <span>Confianza</span>
+          <span id="insightConfidence">—</span>
+        </div>
+        <div class="insight-row">
+          <span>Respuesta</span>
+          <span id="insightResponse">—</span>
+        </div>
+      </div>
+
+      <!-- RANKING -->
+      <div class="ranking" id="ranking">
+        <p class="ranking-title">🏆 Mood Challenge</p>
+        <ol id="rankingList"></ol>
+      </div>
+
+      <button id="restartBtn" class="btn-secondary">🔄 Reiniciar</button>
+
+    </section>
+
+  </div>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+  <script defer src="app.js"></script>
+</body>
+</html>
