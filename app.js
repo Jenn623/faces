@@ -117,7 +117,7 @@ function stopCamera(){
 
 function startDetectionLoop(){
   const ctx = els.overlay.getContext("2d");
-  const options = new faceapi.TinyFaceDetectorOptions({ inputSize: 224, scoreThreshold: 0.5 });
+  const options = new faceapi.TinyFaceDetectorOptions({ inputSize: 320, scoreThreshold: 0.5 });
 
   detectionInterval = setInterval(async () => {
     if (els.video.readyState < 2) return;
@@ -135,9 +135,18 @@ function startDetectionLoop(){
       return;
     }
 
-    els.scanHudText.textContent = "ROSTRO DETECTADO";
-
     const box = result.detection.box;
+
+    // Descarta detecciones con proporciones poco realistas para un rostro
+    // (evita marcar manos, ropa u objetos como cara).
+    const ratio = box.width / box.height;
+    if (ratio < 0.6 || ratio > 1.15){
+      els.scanHudText.textContent = "DETECTANDO ROSTRO";
+      els.sentimentLine.textContent = "Esperando rostro…";
+      return;
+    }
+
+    els.scanHudText.textContent = "ROSTRO DETECTADO";
     ctx.strokeStyle = "rgba(234,241,247,0.8)";
     ctx.lineWidth = 2;
     ctx.strokeRect(box.x, box.y, box.width, box.height);

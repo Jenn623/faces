@@ -71,21 +71,25 @@
         <p class="challenge-copy" id="challengeCopy">La IA detectó <strong>neutral</strong>. ¿Puedes hacerla llegar a felicidad?</p>
       </div>
 
-      <!-- MODO EMPRESARIAL -->
-      <div class="insight-card">
-        <p class="insight-title">📊 AI Customer Insight</p>
-        <div class="insight-row">
-          <span>Expresión detectada</span>
-          <span id="insightEmotion">—</span>
+      <div class="insight-row-wrap">
+        <!-- MODO EMPRESARIAL -->
+        <div class="insight-card">
+          <p class="insight-title">📊 AI Customer Insight</p>
+          <div class="insight-row">
+            <span>Expresión detectada</span>
+            <span id="insightEmotion">—</span>
+          </div>
+          <div class="insight-row">
+            <span>Confianza</span>
+            <span id="insightConfidence">—</span>
+          </div>
+          <div class="insight-row">
+            <span>Respuesta</span>
+            <span id="insightResponse">—</span>
+          </div>
         </div>
-        <div class="insight-row">
-          <span>Confianza</span>
-          <span id="insightConfidence">—</span>
-        </div>
-        <div class="insight-row">
-          <span>Respuesta</span>
-          <span id="insightResponse">—</span>
-        </div>
+
+        <button id="restartBtn" class="btn-secondary">🔄 Reiniciar</button>
       </div>
 
       <!-- RANKING -->
@@ -93,8 +97,6 @@
         <p class="ranking-title">🏆 Mood Challenge</p>
         <ol id="rankingList"></ol>
       </div>
-
-      <button id="restartBtn" class="btn-secondary">🔄 Reiniciar</button>
 
     </section>
 
